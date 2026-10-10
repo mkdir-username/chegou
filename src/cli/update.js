@@ -7,7 +7,6 @@ import { join } from 'node:path'
 
 const REGISTRY_URL = 'https://registry.npmjs.org/chegou/latest'
 const CACHE_FILE = join(tmpdir(), 'chegou-update.json')
-const CHECK_EVERY_MS = 24 * 60 * 60 * 1000 // consulta o npm no máximo 1x por dia
 const TIMEOUT_MS = 2500
 
 /** "1.10.0" > "1.9.2"? compara número por número (ignora sufixos tipo -beta) */
@@ -63,12 +62,12 @@ export async function checkForUpdate(current) {
   if (shouldSkip()) return null
 
   try {
-    const cache = readCache()
-    let latest = cache?.latest
-
-    if (!latest || Date.now() - (cache.checkedAt ?? 0) > CHECK_EVERY_MS) {
+    let latest
+    try {
       latest = await fetchLatest()
       writeCache(latest)
+    } catch {
+      latest = readCache()?.latest
     }
 
     if (!latest || !isNewer(latest, current)) return null
