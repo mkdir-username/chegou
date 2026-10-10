@@ -1,4 +1,4 @@
-import { createReadStream, existsSync } from 'node:fs'
+import { createReadStream, statSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import Fastify from 'fastify'
 import multipart from '@fastify/multipart'
@@ -98,15 +98,24 @@ export async function createServer({ dir, token, onFile, shareManager, onDownloa
       const { id } = request.params
       const item = shareManager?.getItem(id)
 
-      if (!item || item.type !== 'file' || !existsSync(item.path)) {
+      if (!item || item.type !== 'file') {
         return reply.code(404).send({ error: 'not_found' })
       }
 
-      onDownload?.({ name: item.name, size: item.size })
+      // tamanho lido agora, não na hora de compartilhar: se o arquivo mudou
+      // nesse meio tempo, um Content-Length velho cortaria ou travaria o download
+      let size
+      try {
+        size = statSync(item.path).size
+      } catch {
+        return reply.code(404).send({ error: 'not_found' })
+      }
+
+      onDownload?.({ name: item.name, size })
 
       const encoded = encodeURIComponent(item.name)
       reply.header('Content-Disposition', `attachment; filename="${encoded}"; filename*=UTF-8''${encoded}`)
-      reply.header('Content-Length', item.size)
+      reply.header('Content-Length', size)
       reply.type('application/octet-stream')
 
       return reply.send(createReadStream(item.path))
