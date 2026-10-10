@@ -32,7 +32,8 @@ export function sanitizeFilename(name) {
   let base = ext ? clean.slice(0, -ext.length) : clean
 
   if (!base) base = t('upload.fallbackName')
-  if (RESERVED.test(base)) base = `_${base}`
+  // o Windows reserva o nome até o primeiro ponto: "con.tar.gz" também não pode
+  if (RESERVED.test(base.split('.')[0])) base = `_${base}`
 
   const room = MAX_LENGTH - ext.length
   if (base.length > room) base = base.slice(0, room)
