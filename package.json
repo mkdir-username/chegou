@@ -13,7 +13,8 @@
   ],
   "scripts": {
     "start": "node bin/chegou.js",
-    "dev": "node --watch bin/chegou.js"
+    "dev": "node --watch bin/chegou.js",
+    "test": "node --test"
   },
   "keywords": [
     "file-transfer",
