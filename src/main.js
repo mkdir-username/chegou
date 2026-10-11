@@ -2,13 +2,16 @@
 //   opções -> rede -> modo (local/túnel) -> servidor -> túnel -> banner -> terminal interativo
 
 import { mkdirSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { createInterface } from 'node:readline'
 import pc from 'picocolors'
 import { fail, parseArgs } from './cli/args.js'
 import { watchIdle } from './cli/idle.js'
+import { revealFile } from './cli/open.js'
 import { chooseMode } from './cli/prompt.js'
+import { loadSettings, saveSettings } from './cli/settings.js'
 import { checkForUpdate } from './cli/update.js'
-import { printBanner, printDownloaded, printError, printFile, printGoodbye, printShared, printUpdate, printWarning } from './cli/ui.js'
+import { printBanner, printDownloaded, printError, printFile, printGoodbye, printOpened, printOpenSetting, printShared, printUpdate, printWarning } from './cli/ui.js'
 import { TOKEN_BYTES } from './config.js'
 import { t } from './i18n/index.js'
 import { findFreePort, getLocalIP } from './net/network.js'
@@ -58,12 +61,29 @@ export async function run(argv = process.argv.slice(2)) {
     }
   }
 
-  // 4. servidor
+  // 4. servidor; no primeiro arquivo que chega, abre a pasta com ele selecionado
+  //    (liga/desliga com --open, e a escolha fica salva)
+  const settings = loadSettings()
+  if (options.open !== undefined) {
+    settings.openFolder = options.open === 'toggle' ? !settings.openFolder : options.open
+    printOpenSetting({ enabled: settings.openFolder, saved: saveSettings(settings) })
+  }
+
+  let opened = false
+  function onFile(file) {
+    printFile(file)
+    if (settings.openFolder && !opened) {
+      opened = true
+      revealFile(join(options.dir, file.name))
+      printOpened()
+    }
+  }
+
   const app = await createServer({
     dir: options.dir,
     token,
     shareManager,
-    onFile: printFile,
+    onFile,
     onDownload: printDownloaded,
   })
 

@@ -188,6 +188,17 @@ export function printDownloaded({ name, size }) {
   activityLine(pc.green('↓'), name, formatSize(size), t('activity.downloaded'), pc.green)
 }
 
+/** a pasta abriu sozinha no primeiro arquivo */
+export function printOpened() {
+  console.log(`  ${pc.cyan('↗')} ${pc.dim(t('activity.opened'))}`)
+}
+
+/** --open mudou a preferência salva */
+export function printOpenSetting({ enabled, saved }) {
+  const state = enabled ? pc.green(t('open.on')) : pc.yellow(t('open.off'))
+  console.log(`\n  ${pc.cyan('↗')} ${t('open.label')} ${state} ${pc.dim(saved ? t('open.saved') : t('open.notSaved'))}`)
+}
+
 /** aviso amarelo (pasta ignorada, túnel caiu...) */
 export function printWarning(message) {
   console.log(`  ${pc.yellow('!')} ${message}`)
