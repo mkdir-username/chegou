@@ -99,6 +99,7 @@ com o chegou aberto, **arraste arquivos ou pastas pra janela do terminal** ou di
 | `--port <número>` | `-p` | porta preferida (se estiver ocupada, usa a próxima livre) | `8080` |
 | `--dir <caminho>` | `-d` | onde salvar o que chega do celular | `~/Downloads/chegou` |
 | `--timeout <min>` | `-t` | desliga depois de X minutos sem uso (aceita `0.5` = 30 s) | desligado |
+| `--open [on\|off]` | | abre a pasta (com o arquivo selecionado) quando o 1º arquivo chega. sozinho, liga/desliga, e a escolha fica salva | ligado |
 | `--lang <idioma>` | | idioma do terminal (`pt`, `en`) | o do sistema |
 | `--help` | `-h` | mostra a ajuda | |
 

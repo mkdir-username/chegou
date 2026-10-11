@@ -101,6 +101,7 @@ while chegou is running, **drop files or folders on the terminal window** or typ
 | `--port <number>` | `-p` | preferred port (if it's busy, the next free one is used) | `8080` |
 | `--dir <path>` | `-d` | where to save what comes from the phone | `~/Downloads/chegou` |
 | `--timeout <min>` | `-t` | shut down after X minutes without use (`0.5` = 30 s) | off |
+| `--open [on\|off]` | | open the folder (with the file selected) when the 1st file arrives. alone it flips on/off, and the choice is saved | on |
 | `--lang <language>` | | terminal language (`en`, `pt`) | system's |
 | `--help` | `-h` | show the help | |
 
