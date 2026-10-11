@@ -12,6 +12,7 @@ export default {
     chegou ./photos             # every file in a folder
     chegou https://mysite.com   # send a link for the phone to open
     chegou --relay              # use the tunnel (works outside your wi-fi)
+    chegou --open               # turn auto-open folder on/off (saved)
 
   options:
     --relay, --tunnel, -r  Cloudflare tunnel: works from any network (up to 100 MB per file)
@@ -19,6 +20,7 @@ export default {
     --port, -p <number>    preferred port (default: {port})
     --dir,  -d <path>      where to save incoming files (default: ~/Downloads/chegou)
     --timeout, -t <min>    shut down after X minutes without use
+    --open [on|off]        open the folder when the 1st file arrives: alone it flips, it's saved (default: on)
     --lang <language>      terminal language: {langs}
     --help, -h             show this help
 `,
@@ -29,6 +31,7 @@ export default {
     badTimeout: 'invalid time: {value} (use minutes, e.g. --timeout 10 or --timeout 0.5)',
     badLang: 'invalid language: {value} (available: {langs})',
     unknown: 'unknown option: {flag}',
+    badOpen: 'invalid value for --open: {value} (use on or off)',
   },
 
   errors: {
@@ -81,6 +84,7 @@ export default {
   },
 
   activity: {
+    opened: 'folder opened · chegou --open turns this off',
     shared: '(shared)',
     sharedText: '···· shared with phone',
     downloaded: '(downloaded on phone)',
@@ -103,6 +107,14 @@ export default {
     available: 'new version available',
     run: 'to update:',
   },
+  open: {
+    label: 'open folder on 1st file:',
+    on: 'on',
+    off: 'off',
+    saved: '(saved for next time)',
+    notSaved: "(this time only, couldn't save)",
+  },
+
   goodbye: {
     idle: 'stopped after being idle ({time})',
     bye: 'see you ·',

@@ -12,6 +12,7 @@ export default {
     chegou ./fotos              # todos os arquivos de uma pasta
     chegou https://meusite.com  # manda um link pro celular abrir
     chegou --relay              # usa o túnel (funciona fora do wi-fi)
+    chegou --open               # liga/desliga abrir a pasta sozinha (fica salvo)
 
   opções:
     --relay, --tunnel, -r  túnel Cloudflare: funciona de qualquer rede (até 100 MB por arquivo)
@@ -19,6 +20,7 @@ export default {
     --port, -p <número>    porta preferida (padrão: {port})
     --dir,  -d <caminho>   onde salvar o que chega (padrão: ~/Downloads/chegou)
     --timeout, -t <min>    desliga sozinho depois de X minutos sem uso
+    --open [on|off]        abrir a pasta quando o 1º arquivo chega: sozinho inverte, fica salvo (padrão: on)
     --lang <idioma>        idioma do terminal: {langs}
     --help, -h             mostra esta ajuda
 `,
@@ -29,6 +31,7 @@ export default {
     badTimeout: 'tempo inválido: {value} (use minutos, ex: --timeout 10 ou --timeout 0.5)',
     badLang: 'idioma inválido: {value} (disponíveis: {langs})',
     unknown: 'opção desconhecida: {flag}',
+    badOpen: 'valor inválido pro --open: {value} (use on ou off)',
   },
 
   errors: {
@@ -81,6 +84,7 @@ export default {
   },
 
   activity: {
+    opened: 'pasta aberta · chegou --open desliga isso',
     shared: '(compartilhado)',
     sharedText: '···· compartilhado com celular',
     downloaded: '(baixado no celular)',
@@ -103,6 +107,14 @@ export default {
     available: 'nova versão disponível',
     run: 'pra atualizar:',
   },
+  open: {
+    label: 'abrir a pasta no 1º arquivo:',
+    on: 'ligado',
+    off: 'desligado',
+    saved: '(salvo pras próximas vezes)',
+    notSaved: '(só desta vez, não deu pra salvar)',
+  },
+
   goodbye: {
     idle: 'desligado por inatividade ({time} sem uso)',
     bye: 'até mais ·',

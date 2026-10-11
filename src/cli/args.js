@@ -6,6 +6,9 @@ import pc from 'picocolors'
 import { DEFAULT_DIR, DEFAULT_PORT } from '../config.js'
 import { availableLangs, detectLang, setLang, t } from '../i18n/index.js'
 
+const ON = ['on', 'true', '1', 'sim', 'yes']
+const OFF = ['off', 'false', '0', 'nao', 'não', 'no']
+
 /** texto da ajuda no idioma atual */
 export function helpText() {
   return t('help', { port: DEFAULT_PORT, langs: availableLangs.join(', ') })
@@ -48,6 +51,7 @@ function findLangFlag(argv) {
  * @property {number} timeout minutos (0 = nunca desliga)
  * @property {'local' | 'tunnel' | null} mode null = perguntar
  * @property {string[]} items arquivos, pastas ou links passados no comando
+ * @property {'toggle' | boolean | undefined} open --open: liga/desliga abrir a pasta (fica salvo)
  */
 
 /**
@@ -58,7 +62,7 @@ export function parseArgs(argv) {
   const langFlag = findLangFlag(argv)
   setLang(detectLang(langFlag))
 
-  const options = { port: DEFAULT_PORT, dir: DEFAULT_DIR, timeout: 0, mode: null, items: [] }
+  const options = { port: DEFAULT_PORT, dir: DEFAULT_DIR, timeout: 0, mode: null, items: [], open: undefined }
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]
@@ -113,6 +117,21 @@ export function parseArgs(argv) {
       case '--lang': {
         const lang = takeValue().toLowerCase().split(/[-_]/)[0]
         if (!availableLangs.includes(lang)) fail(t('args.badLang', { value, langs: availableLangs.join(', ') }))
+        break
+      }
+
+      // --open sozinho inverte; --open on / --open off define direto
+      case '--open': {
+        const next = value ?? argv[i + 1]
+        const choice = String(next ?? '').toLowerCase()
+        if (ON.includes(choice) || OFF.includes(choice)) {
+          if (value === undefined) i++
+          options.open = ON.includes(choice)
+        } else if (value !== undefined) {
+          fail(t('args.badOpen', { value }))
+        } else {
+          options.open = 'toggle'
+        }
         break
       }
 
