@@ -13,6 +13,7 @@
 ![npm](https://img.shields.io/npm/v/chegou?style=flat-square&labelColor=0b0e11&color=3fb950&label=npm)
 ![stars](https://img.shields.io/github/stars/zrdep/chegou?style=flat-square&labelColor=0b0e11&color=3fb950)
 ![license](https://img.shields.io/npm/l/chegou?style=flat-square&labelColor=0b0e11&color=3fb950)
+![tests](https://img.shields.io/github/actions/workflow/status/zrdep/chegou/test.yml?branch=main&style=flat-square&labelColor=0b0e11&label=tests)
 
 </div>
 
