@@ -7,8 +7,9 @@
 
 import en from './en.js'
 import pt from './pt.js'
+import ru from './ru.js'
 
-const LOCALES = { pt, en }
+const LOCALES = { pt, en, ru }
 const FALLBACK = 'en'
 
 let current = FALLBACK
@@ -62,6 +63,17 @@ export function timeLocale() {
 }
 
 /**
+ * one/other por padrão; com few/many (russo) usa as regras de plural do idioma
+ * @param {Record<string, string>} forms
+ * @param {number} n
+ * @param {string} lang
+ */
+function pluralForm(forms, n, lang) {
+  if (forms.few) return forms[new Intl.PluralRules(lang).select(n)] ?? forms.other
+  return n === 1 ? forms.one : forms.other
+}
+
+/**
  * busca o texto pela chave ("banner.waiting") e troca {variáveis}
  * plural: se o texto for { one, other } e vars.n existir, escolhe pelo número
  * @param {string} key
@@ -72,7 +84,7 @@ export function t(key, vars = {}) {
   const lookup = (dict) => key.split('.').reduce((node, part) => node?.[part], dict)
   let text = lookup(LOCALES[current]) ?? lookup(LOCALES[FALLBACK]) ?? key
 
-  if (typeof text === 'object') text = vars.n === 1 ? text.one : text.other
+  if (typeof text === 'object') text = pluralForm(text, vars.n, current)
 
   return String(text).replace(/\{(\w+)\}/g, (_, name) => (name in vars ? String(vars[name]) : `{${name}}`))
 }

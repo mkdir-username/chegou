@@ -29,7 +29,9 @@
    */
   function t(key, vars = {}) {
     let text = lookup(LOCALES[lang], key) ?? lookup(LOCALES[FALLBACK], key) ?? key
-    if (typeof text === 'object') text = vars.n === 1 ? text.one : text.other
+    if (typeof text === 'object') {
+      text = text.few ? text[new Intl.PluralRules(lang).select(vars.n)] ?? text.other : vars.n === 1 ? text.one : text.other
+    }
     return String(text).replace(/\{(\w+)\}/g, (_, name) => (name in vars ? String(vars[name]) : `{${name}}`))
   }
 
