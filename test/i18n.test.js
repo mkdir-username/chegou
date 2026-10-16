@@ -36,6 +36,20 @@ test('ru: plural com one/few/many', () => {
   assert.equal(t('goodbye.files', { n: 21 }), '21 файл')
 })
 
+test('comando se chama qrdrop em todos os idiomas', () => {
+  for (const lang of ['ru', 'en', 'pt']) {
+    setLang(lang)
+    assert.match(t('help'), /qrdrop --relay/)
+    assert.doesNotMatch(t('help'), /chegou/)
+    assert.match(t('activity.opened'), /qrdrop --open/)
+  }
+  const page = pageLocales('en', 'ru', 'pt')
+  for (const lang of ['en', 'ru', 'pt']) {
+    assert.match(page[lang].boot.hostTunnel, /^qrdrop/)
+    assert.match(page[lang].errors.network, /qrdrop/)
+  }
+})
+
 test('en continua com one/other', () => {
   setLang('en')
   assert.equal(t('goodbye.files', { n: 1 }), '1 file')

@@ -6,8 +6,8 @@ const DEFAULTS = { openFolder: true }
 
 function settingsDir() {
   if (process.env.CHEGOU_CONFIG_DIR) return process.env.CHEGOU_CONFIG_DIR
-  if (process.platform === 'win32' && process.env.APPDATA) return join(process.env.APPDATA, 'chegou')
-  return join(process.env.XDG_CONFIG_HOME || join(homedir(), '.config'), 'chegou')
+  if (process.platform === 'win32' && process.env.APPDATA) return join(process.env.APPDATA, 'qrdrop')
+  return join(process.env.XDG_CONFIG_HOME || join(homedir(), '.config'), 'qrdrop')
 }
 
 const file = () => join(settingsDir(), 'settings.json')

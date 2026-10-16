@@ -8,7 +8,7 @@ window.CHEGOU_LOCALES.en = {
     ready: '  ready to swap files',
     connectedTunnel: 'connected through the tunnel',
     readyTunnel: '  any network · up to 100 MB',
-    hostTunnel: 'chegou · tunnel',
+    hostTunnel: 'qrdrop · tunnel',
   },
 
   sections: {
@@ -59,7 +59,7 @@ window.CHEGOU_LOCALES.en = {
     tooLargeTunnel: 'file is over 100 MB, the tunnel limit',
     tunnelLimit: 'over 100 MB, the tunnel limit: {names} · use the local network for this one',
     http: 'error {status} on the PC',
-    network: 'connection lost · is chegou still running on the PC?',
+    network: 'connection lost · is qrdrop still running on the PC?',
     aborted: 'upload cancelled',
     noToken: '! no token in the url · scan the QR code in the terminal',
   },

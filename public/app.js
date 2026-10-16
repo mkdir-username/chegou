@@ -593,7 +593,7 @@ window.addEventListener('online', () => initPcStream())
 
 // ---------- início ----------
 
-els.host.textContent = isRelay ? t('boot.hostTunnel') : `chegou · ${location.hostname}`
+els.host.textContent = isRelay ? t('boot.hostTunnel') : `qrdrop · ${location.hostname}`
 
 if (isRelay) {
   $('connected-status').textContent = t('boot.connectedTunnel')

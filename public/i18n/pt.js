@@ -8,7 +8,7 @@ window.CHEGOU_LOCALES.pt = {
     ready: '  pronto pra trocar arquivos',
     connectedTunnel: 'conectado pelo túnel',
     readyTunnel: '  qualquer rede · até 100 MB',
-    hostTunnel: 'chegou · túnel',
+    hostTunnel: 'qrdrop · túnel',
   },
 
   sections: {
@@ -59,7 +59,7 @@ window.CHEGOU_LOCALES.pt = {
     tooLargeTunnel: 'arquivo passou de 100 MB, o limite do túnel',
     tunnelLimit: 'passa de 100 MB, o limite do túnel: {names} · use a rede local pra esse',
     http: 'erro {status} no PC',
-    network: 'conexão perdida · o PC ainda está rodando o chegou?',
+    network: 'conexão perdida · o PC ainda está rodando o qrdrop?',
     aborted: 'envio cancelado',
     noToken: '! sem token na url · escaneie o QR code do terminal',
   },

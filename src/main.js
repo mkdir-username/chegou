@@ -10,8 +10,7 @@ import { watchIdle } from './cli/idle.js'
 import { revealFile } from './cli/open.js'
 import { chooseMode } from './cli/prompt.js'
 import { loadSettings, saveSettings } from './cli/settings.js'
-import { checkForUpdate } from './cli/update.js'
-import { printBanner, printDownloaded, printError, printFile, printGoodbye, printOpened, printOpenSetting, printShared, printUpdate, printWarning } from './cli/ui.js'
+import { printBanner, printDownloaded, printError, printFile, printGoodbye, printOpened, printOpenSetting, printShared, printWarning } from './cli/ui.js'
 import { TOKEN_BYTES } from './config.js'
 import { t } from './i18n/index.js'
 import { findFreePort, getLocalIP } from './net/network.js'
@@ -27,8 +26,6 @@ export async function run(argv = process.argv.slice(2)) {
   // 1. opções e pasta de destino
   const options = parseArgs(argv)
 
-  // já começa a perguntar pro npm se tem versão nova (em paralelo, sem esperar)
-  const update = checkForUpdate(version)
 
   try {
     mkdirSync(options.dir, { recursive: true })
@@ -135,7 +132,6 @@ export async function run(argv = process.argv.slice(2)) {
   printBanner({ ip, port, preferredPort: options.port, dir: options.dir, token, version, timeout: options.timeout, relayUrl })
   idle.reset()
   shareManager.getAll().forEach(printShared)
-  update.then((info) => info && !closing && printUpdate(info))
 
   // 7. terminal interativo: arrastar arquivos/pastas, colar link ou "q" pra sair
   if (process.stdin.isTTY || !process.env.CI) {

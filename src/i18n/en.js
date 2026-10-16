@@ -4,21 +4,21 @@ export default {
   meta: { name: 'English', timeLocale: 'en-US' },
 
   help: `
-  usage: chegou [options] [files, folders or links...]
+  usage: qrdrop [options] [files, folders or links...]
 
   examples:
-    chegou                      # open and wait for files from your phone
-    chegou photo.jpg video.mp4  # make these files ready to download on the phone
-    chegou ./photos             # every file in a folder
-    chegou https://mysite.com   # send a link for the phone to open
-    chegou --relay              # use the tunnel (works outside your wi-fi)
-    chegou --open               # turn auto-open folder on/off (saved)
+    qrdrop                      # open and wait for files from your phone
+    qrdrop photo.jpg video.mp4  # make these files ready to download on the phone
+    qrdrop ./photos             # every file in a folder
+    qrdrop https://mysite.com   # send a link for the phone to open
+    qrdrop --relay              # use the tunnel (works outside your wi-fi)
+    qrdrop --open               # turn auto-open folder on/off (saved)
 
   options:
     --relay, --tunnel, -r  Cloudflare tunnel: works from any network (up to 100 MB per file)
     --local, -l            local network, don't ask
     --port, -p <number>    preferred port (default: {port})
-    --dir,  -d <path>      where to save incoming files (default: ~/Downloads/chegou)
+    --dir,  -d <path>      where to save incoming files (default: ~/Downloads/qrdrop)
     --timeout, -t <min>    shut down after X minutes without use
     --open [on|off]        open the folder when the 1st file arrives: alone it flips, it's saved (default: on)
     --lang <language>      terminal language: {langs}
@@ -85,7 +85,7 @@ export default {
   },
 
   activity: {
-    opened: 'folder opened · chegou --open turns this off',
+    opened: 'folder opened · qrdrop --open turns this off',
     shared: '(shared)',
     sharedText: '···· shared with phone',
     downloaded: '(downloaded on phone)',
@@ -104,10 +104,6 @@ export default {
     noFreeName: "couldn't find a free name for {name}",
   },
 
-  update: {
-    available: 'new version available',
-    run: 'to update:',
-  },
   open: {
     label: 'open folder on 1st file:',
     on: 'on',

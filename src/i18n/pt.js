@@ -4,21 +4,21 @@ export default {
   meta: { name: 'português', timeLocale: 'pt-BR' },
 
   help: `
-  uso: chegou [opções] [arquivos, pastas ou links...]
+  uso: qrdrop [opções] [arquivos, pastas ou links...]
 
   exemplos:
-    chegou                      # abre e espera arquivos do celular
-    chegou foto.jpg video.mp4   # deixa esses arquivos prontos pro celular baixar
-    chegou ./fotos              # todos os arquivos de uma pasta
-    chegou https://meusite.com  # manda um link pro celular abrir
-    chegou --relay              # usa o túnel (funciona fora do wi-fi)
-    chegou --open               # liga/desliga abrir a pasta sozinha (fica salvo)
+    qrdrop                      # abre e espera arquivos do celular
+    qrdrop foto.jpg video.mp4   # deixa esses arquivos prontos pro celular baixar
+    qrdrop ./fotos              # todos os arquivos de uma pasta
+    qrdrop https://meusite.com  # manda um link pro celular abrir
+    qrdrop --relay              # usa o túnel (funciona fora do wi-fi)
+    qrdrop --open               # liga/desliga abrir a pasta sozinha (fica salvo)
 
   opções:
     --relay, --tunnel, -r  túnel Cloudflare: funciona de qualquer rede (até 100 MB por arquivo)
     --local, -l            rede local, sem perguntar
     --port, -p <número>    porta preferida (padrão: {port})
-    --dir,  -d <caminho>   onde salvar o que chega (padrão: ~/Downloads/chegou)
+    --dir,  -d <caminho>   onde salvar o que chega (padrão: ~/Downloads/qrdrop)
     --timeout, -t <min>    desliga sozinho depois de X minutos sem uso
     --open [on|off]        abrir a pasta quando o 1º arquivo chega: sozinho inverte, fica salvo (padrão: on)
     --lang <idioma>        idioma do terminal: {langs}
@@ -85,7 +85,7 @@ export default {
   },
 
   activity: {
-    opened: 'pasta aberta · chegou --open desliga isso',
+    opened: 'pasta aberta · qrdrop --open desliga isso',
     shared: '(compartilhado)',
     sharedText: '···· compartilhado com celular',
     downloaded: '(baixado no celular)',
@@ -104,10 +104,6 @@ export default {
     noFreeName: 'não consegui um nome livre para {name}',
   },
 
-  update: {
-    available: 'nova versão disponível',
-    run: 'pra atualizar:',
-  },
   open: {
     label: 'abrir a pasta no 1º arquivo:',
     on: 'ligado',

@@ -130,7 +130,7 @@ export function printBanner({ ip, port, preferredPort, dir, token, version, time
   const labelWidth = Math.max(...rows.map(([label]) => label.length)) + 2
 
   const info = [
-    `${pc.green(sym.dot)} ${pc.bold('chegou')}${relayUrl ? ` ${pc.cyan(t('banner.tunnelTag'))}` : ''}`,
+    `${pc.green(sym.dot)} ${pc.bold('qrdrop')}${relayUrl ? ` ${pc.cyan(t('banner.tunnelTag'))}` : ''}`,
     pc.dim(t('banner.waiting')),
     '',
     ...rows.map(([label, value]) => `${pc.dim(label.padEnd(labelWidth))}${value}`),
@@ -160,7 +160,7 @@ export function printBanner({ ip, port, preferredPort, dir, token, version, time
   }
 
   console.log()
-  console.log(box(lines, `chegou v${version}${relayUrl ? ` ${t('banner.tunnelTag')}` : ''}`))
+  console.log(box(lines, `qrdrop v${version}${relayUrl ? ` ${t('banner.tunnelTag')}` : ''}`))
   console.log()
   console.log(pc.dim(`  ${sym.h.repeat(2)} ${t('banner.activity')} ${sym.h.repeat(40)}`))
   console.log()
@@ -201,12 +201,6 @@ export function printOpenSetting({ enabled, saved }) {
 /** aviso amarelo (pasta ignorada, túnel caiu...) */
 export function printWarning(message) {
   console.log(`  ${pc.yellow('!')} ${message}`)
-}
-
-/** aviso de versão nova no npm */
-export function printUpdate({ current, latest, command }) {
-  console.log(`  ${pc.yellow('↑')} ${t('update.available')} ${pc.dim(current)} ${pc.dim('→')} ${pc.green(latest)}`)
-  console.log(`    ${pc.dim(t('update.run'))} ${pc.cyan(command)}\n`)
 }
 
 /** erro vermelho no meio do uso */

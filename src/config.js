@@ -6,7 +6,7 @@ import { join } from 'node:path'
 // rede local
 export const DEFAULT_PORT = 8080
 export const PORT_ATTEMPTS = 20
-export const DEFAULT_DIR = join(homedir(), 'Downloads', 'chegou')
+export const DEFAULT_DIR = join(homedir(), 'Downloads', 'qrdrop')
 
 // tamanho do token: curto na rede local (cabe no QR e dá pra digitar), longo no túnel (url pública)
 export const TOKEN_BYTES = { local: 4, tunnel: 8 }

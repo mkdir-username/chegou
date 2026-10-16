@@ -1,10 +1,10 @@
 {
-  "name": "chegou",
+  "name": "qrdrop",
   "version": "1.7.0",
   "description": "Move files between your phone and your PC over the local network. One command, one QR code, done.",
   "type": "module",
   "bin": {
-    "chegou": "bin/chegou.js"
+    "qrdrop": "bin/qrdrop.js"
   },
   "files": [
     "bin",
@@ -12,8 +12,8 @@
     "public"
   ],
   "scripts": {
-    "start": "node bin/chegou.js",
-    "dev": "node --watch bin/chegou.js",
+    "start": "node bin/qrdrop.js",
+    "dev": "node --watch bin/qrdrop.js",
     "test": "node --test"
   },
   "keywords": [

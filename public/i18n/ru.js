@@ -8,7 +8,7 @@ window.CHEGOU_LOCALES.ru = {
     ready: '  можно обмениваться файлами',
     connectedTunnel: 'подключено через туннель',
     readyTunnel: '  любая сеть · до 100 МБ',
-    hostTunnel: 'chegou · туннель',
+    hostTunnel: 'qrdrop · туннель',
   },
 
   sections: {
@@ -64,7 +64,7 @@ window.CHEGOU_LOCALES.ru = {
     tooLargeTunnel: 'файл больше 100 МБ — лимит туннеля',
     tunnelLimit: 'больше 100 МБ, лимит туннеля: {names} · для них используй локальную сеть',
     http: 'ошибка {status} на компьютере',
-    network: 'связь потеряна · chegou на компьютере ещё запущен?',
+    network: 'связь потеряна · qrdrop на компьютере ещё запущен?',
     aborted: 'отправка отменена',
     noToken: '! в адресе нет токена · отсканируй QR в терминале',
   },
