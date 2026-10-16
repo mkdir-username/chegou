@@ -49,6 +49,7 @@ export default {
     localHint: 'mesmo wi-fi · mais rápido · sem limite',
     tunnelName: 'túnel',
     tunnelHint: 'qualquer rede · via Cloudflare · até 100 MB por arquivo',
+    relayHint: 'qualquer rede · pelo seu servidor · sem limite de tamanho',
     noLan: ' sem rede local',
     keys: '↑↓ escolher · enter confirmar',
   },

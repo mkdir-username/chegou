@@ -5,13 +5,13 @@ import pc from 'picocolors'
 import { t } from '../i18n/index.js'
 
 /**
- * @param {{ hasLan: boolean }} info
+ * @param {{ hasLan: boolean, ownRelay?: boolean }} info
  * @returns {Promise<'local' | 'tunnel'>}
  */
-export function chooseMode({ hasLan }) {
+export function chooseMode({ hasLan, ownRelay = false }) {
   const options = [
     { value: 'local', name: t('prompt.localName'), hint: t('prompt.localHint') },
-    { value: 'tunnel', name: t('prompt.tunnelName'), hint: t('prompt.tunnelHint') },
+    { value: 'tunnel', name: t('prompt.tunnelName'), hint: t(ownRelay ? 'prompt.relayHint' : 'prompt.tunnelHint') },
   ]
   const nameWidth = Math.max(...options.map((option) => option.name.length)) + 1
 

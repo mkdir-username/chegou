@@ -49,6 +49,7 @@ export default {
     localHint: 'same wi-fi · faster · no size limit',
     tunnelName: 'tunnel',
     tunnelHint: 'any network · via Cloudflare · up to 100 MB per file',
+    relayHint: 'any network · via your own server · no size limit',
     noLan: ' no local network',
     keys: '↑↓ choose · enter confirm',
   },

@@ -40,7 +40,7 @@ export async function run(argv = process.argv.slice(2)) {
   const ip = getLocalIP()
   let mode = options.mode
   if (!mode) {
-    mode = process.stdin.isTTY && process.stdout.isTTY ? await chooseMode({ hasLan: Boolean(ip) }) : 'local'
+    mode = process.stdin.isTTY && process.stdout.isTTY ? await chooseMode({ hasLan: Boolean(ip), ownRelay: Boolean(loadSettings().relay?.host) }) : 'local'
   }
 
   const token = generateToken(TOKEN_BYTES[mode])

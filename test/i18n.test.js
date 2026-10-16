@@ -42,6 +42,15 @@ test('en continua com one/other', () => {
   assert.equal(t('goodbye.files', { n: 0 }), '0 files')
 })
 
+test('dica do relay próprio existe e não fala de Cloudflare', () => {
+  for (const lang of ['ru', 'en', 'pt']) {
+    setLang(lang)
+    const hint = t('prompt.relayHint')
+    assert.notEqual(hint, 'prompt.relayHint')
+    assert.doesNotMatch(hint, /Cloudflare|100/)
+  }
+})
+
 test('detectLang reconhece ru_RU.UTF-8', () => {
   assert.equal(detectLang('ru_RU.UTF-8'), 'ru')
 })
