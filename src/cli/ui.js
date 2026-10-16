@@ -137,7 +137,7 @@ export function printBanner({ ip, port, preferredPort, dir, token, version, time
     ...rows.map(([label, value]) => `${pc.dim(label.padEnd(labelWidth))}${value}`),
   ]
 
-  if (relayUrl) info.push('', pc.yellow(`${sym.warn} ${t('banner.tunnelLimit')}`))
+  if (relayUrl?.includes('.trycloudflare.com')) info.push('', pc.yellow(`${sym.warn} ${t('banner.tunnelLimit')}`))
   if (port !== preferredPort) info.push('', pc.yellow(`${sym.warn} ${t('banner.portBusy', { wanted: preferredPort, port })}`))
 
   info.push(
