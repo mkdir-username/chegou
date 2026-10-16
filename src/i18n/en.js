@@ -121,6 +121,5 @@ export default {
     bye: 'see you ·',
     nothing: 'no files received',
     files: { one: '{n} file', other: '{n} files' },
-    star: 'enjoyed it? leave a',
   },
 }

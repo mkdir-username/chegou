@@ -52,7 +52,6 @@ const token = new URLSearchParams(location.search).get('t') ?? ''
 // pelo túnel do Cloudflare cada requisição pode ter no máximo 100 MB
 const isRelay = location.hostname.endsWith('.trycloudflare.com')
 const RELAY_MAX_BYTES = 100 * 1024 * 1024 - 64 * 1024 // folga pro cabeçalho do multipart
-const REPO_URL = 'https://github.com/zrdep/chegou'
 
 /** @type {File[]} */
 let selected = []
@@ -276,25 +275,6 @@ async function uploadSmart(files, onProgress) {
   return { files: saved }
 }
 
-/**
- * depois do primeiro envio que deu certo, uma linha discreta pedindo estrela
- * (só uma vez por visita, pra não encher o saco)
- */
-let starShown = false
-function showStar() {
-  if (starShown) return
-  starShown = true
-
-  const line = el('p', 'line dim star', t('star.text'))
-  const link = el('a', '', t('star.link'))
-  link.href = REPO_URL
-  link.target = '_blank'
-  link.rel = 'noopener'
-  line.append(link)
-  els.log.append(line)
-  line.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-}
-
 // avisa antes de fechar a página no meio do envio
 window.addEventListener('beforeunload', (event) => {
   if (state === 'sending' || mediaBusy) event.preventDefault()
@@ -332,7 +312,6 @@ els.send.addEventListener('click', async () => {
 
     const count = result.files?.length ?? selected.length
     log(t('done.arrived', { n: count }), 'ok success')
-    showStar()
     setState('done')
   } catch (err) {
     if (err.beforeUpload) els.progressArea.hidden = true
@@ -441,7 +420,6 @@ async function handleDirectMedia(file, kind) {
     media.detail.className = 'line camera-detail ok'
     media.detail.textContent = doneText
     log(doneText, 'ok success')
-    showStar()
 
   } catch (err) {
     media.card.className = 'camera-card is-error'

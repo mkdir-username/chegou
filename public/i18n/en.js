@@ -72,6 +72,4 @@ window.CHEGOU_LOCALES.en = {
     copyPrompt: 'Copy the text below:',
     new: '✓ new from PC: {name}',
   },
-
-  star: { text: 'enjoyed it? leave a ', link: '★ on github' },
 }

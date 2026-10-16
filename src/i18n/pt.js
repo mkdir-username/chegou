@@ -121,6 +121,5 @@ export default {
     bye: 'até mais ·',
     nothing: 'nenhum arquivo recebido',
     files: { one: '{n} arquivo', other: '{n} arquivos' },
-    star: 'curtiu? deixa uma',
   },
 }

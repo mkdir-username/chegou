@@ -72,6 +72,4 @@ window.CHEGOU_LOCALES.pt = {
     copyPrompt: 'Copie o texto abaixo:',
     new: '✓ novo do PC: {name}',
   },
-
-  star: { text: 'curtiu? deixa uma ', link: '★ no github' },
 }

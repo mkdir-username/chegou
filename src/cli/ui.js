@@ -2,7 +2,6 @@
 
 import { homedir } from 'node:os'
 import pc from 'picocolors'
-import { REPO_URL } from '../config.js'
 import { t, timeLocale } from '../i18n/index.js'
 import { renderQR } from './qr.js'
 
@@ -230,11 +229,6 @@ export function printGoodbye({ reason = 'ctrl+c', minutes = 0 } = {}) {
   }
 
   console.log(`\n  ${pc.dim(t('goodbye.bye'))} ${summary}`)
-
-  // pedido de estrela: só quando a pessoa fechou (não no desligamento automático)
-  if (reason !== 'timeout') {
-    console.log(`\n  ${pc.dim(t('goodbye.star'))} ${pc.yellow('★')} ${pc.dim('→')} ${pc.cyan(REPO_URL)}`)
-  }
 
   console.log()
 }

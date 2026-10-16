@@ -77,6 +77,4 @@ window.CHEGOU_LOCALES.ru = {
     copyPrompt: 'Скопируй текст ниже:',
     new: '✓ новое с компьютера: {name}',
   },
-
-  star: { text: 'понравилось? поставь ', link: '★ на github' },
 }

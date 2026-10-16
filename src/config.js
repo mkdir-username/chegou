@@ -3,8 +3,6 @@
 import { homedir } from 'node:os'
 import { join } from 'node:path'
 
-export const REPO_URL = 'github.com/zrdep/chegou'
-
 // rede local
 export const DEFAULT_PORT = 8080
 export const PORT_ATTEMPTS = 20
