@@ -15,6 +15,7 @@ import { printBanner, printDownloaded, printError, printFile, printGoodbye, prin
 import { TOKEN_BYTES } from './config.js'
 import { t } from './i18n/index.js'
 import { findFreePort, getLocalIP } from './net/network.js'
+import { openSshRelay } from './net/ssh-relay.js'
 import { openTunnel } from './net/tunnel.js'
 import { createServer } from './server/index.js'
 import { createShareManager } from './server/share.js'
@@ -109,12 +110,17 @@ export async function run(argv = process.argv.slice(2)) {
     fail(t('errors.listen', { reason: err.code ?? err.message }), false)
   }
 
-  // 5. túnel Cloudflare (se escolheu)
+  // 5. túnel (se escolheu): relay próprio via ssh quando configurado em settings.relay, senão Cloudflare
   let relayUrl = null
   if (mode === 'tunnel') {
     const status = (message) => process.stdout.write(`\r\x1b[2K  ${pc.cyan('●')} ${pc.dim(message)}`)
     try {
-      tunnel = await openTunnel(port, { onStatus: status })
+      if (settings.relay?.host) {
+        status(t('tunnel.opening'))
+        tunnel = await openSshRelay(port, settings.relay)
+      } else {
+        tunnel = await openTunnel(port, { onStatus: status })
+      }
       relayUrl = tunnel.url
       process.stdout.write('\r\x1b[2K')
     } catch (err) {

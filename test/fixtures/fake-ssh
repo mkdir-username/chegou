@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+// ssh de mentira pros testes do relay: o modo vem de FAKE_SSH
+const mode = process.env.FAKE_SSH
+// conexão compartilhada (ControlMaster) prende o -R no mestre depois que o chegou sai
+const ownConnection = process.argv.includes('ControlMaster=no') && process.argv.includes('ControlPath=none')
+if (mode === 'ok' && !ownConnection) {
+  process.stderr.write('fake-ssh: shared ControlMaster connection\n')
+  process.exit(255)
+} else if (mode === 'ok') {
+  process.stdout.write('ready\n')
+  process.stdin.resume()
+  process.stdin.on('end', () => process.exit(0))
+} else if (mode === 'fail') {
+  process.stderr.write('Error: remote port forwarding failed for listen port 18080\n')
+  process.exit(255)
+} else {
+  setInterval(() => {}, 1000)
+}
